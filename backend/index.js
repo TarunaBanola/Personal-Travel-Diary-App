@@ -3,6 +3,7 @@ import mongoose from "mongoose"
 import dotenv from "dotenv"
 import authRoutes from "./routes/auth.route.js"
 import cookieParser from "cookie-parser"
+import userRoutes from "./routes/user.route.js"
 dotenv.config()
 mongoose.connect(process.env.MONGO_URI).then(
   ()=>{
@@ -18,6 +19,7 @@ app.listen(3000,()=>{
   console.log("Server is running on port 3000!")
 })
 app.use("/api/auth",authRoutes)
+app.use("/api/user",userRoutes)
 app.use((err,req,res,next)=>{
   const statusCode=err.statusCode || 500
   const message=err.message || "Internal Server Error"
